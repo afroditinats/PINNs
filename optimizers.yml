@@ -1,0 +1,9 @@
+optimizer: ["Adam", "AdamW", "SGD", "RMSprop", "Adagrad", "LBFGS"]
+learning_rate:
+  Adam: [0.0001,0.001,0.1,1,2]  
+  AdamW: [0.0001,0.001,0.1,1,2]   
+  SGD: [0.0001,0.001,0.1,1,2]    
+  RMSprop: [0.0001,0.001,0.1,1,2]   
+  Adagrad: [0.001,0.01,0.1,1,2]  
+  LBFGS: [0.001,0.01,0.1,1,2]
+    

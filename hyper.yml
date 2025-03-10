@@ -1,0 +1,7 @@
+iterations: [1000, 2000, 5000, 10000]
+layers: [3, 5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+neurons: [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+activation: ["Tanh", "ReLU", "LeakyReLU", "Sigmoid"]
+optimizer: ["Adam", "AdamW", "SGD", "RMSprop", "Adagrad", "LBFGS"]
+noise: [0.1, 0.5, 1.0, 5.0, 10.0]
+train_val_split: [0.7, 0.8, 0.9]
