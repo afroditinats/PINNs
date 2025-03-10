@@ -1,8 +1,0 @@
-# hyperparameters.yml - Defines hyperparameters for PINN experiments
-hyperparameters:
-  layers: [4, 9 ,50]     
-  neurons: [5, 20, ]      
-  training_samples: [500, 2000]  #Nu 
-  noise_level: [0, 0.5, 10]  
-  iterations: [5000, 10000, 20000]  
-
