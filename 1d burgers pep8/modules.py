@@ -4,10 +4,10 @@ import torch
 import torch.nn as nn
 import torch.autograd as autograd
 import torch.optim as optim
-import torch.mean as mean
 
 
 class Model(nn.Module):
+
     def __init__(self):
         """Initialize the neural network model."""
         super().__init__()
@@ -73,7 +73,7 @@ class Model(nn.Module):
             return torch.tensor([0])
 
         output = self.forward(data[0])
-        return mean((output - data[1]) ** 2)
+        return torch.mean((output - data[1]) ** 2)
 
 
     def phy_loss(self, pde):
@@ -115,10 +115,12 @@ class Model(nn.Module):
     
 
     def save_if_best(self, val_loss):
-        """Saves the best model so far, based on validation step.
-           Loading is disabled by default in train_model()."""
+        """
+        Saves the best model so far, based on validation step.
+        Loading is disabled by default in train_model().
+        """
 
-        if self.val_loss is None or self.val_loss > val_loss:
+        if self.val_loss is None or self.val_loss < val_loss:
             self.val_loss = val_loss
             torch.save(self.network.state_dict(), "best.hdf5")
 
@@ -149,7 +151,7 @@ class Model(nn.Module):
         """Trains the model with both optimizers."""
 
         # Training with ADAM
-        for iter in range(0, iterations):
+        for iter in range(iterations):
             loss = self.loss_fn(bc, ic, cc, val, pde)
             self.adam_optimizer.zero_grad()
             loss.backward()
@@ -239,10 +241,21 @@ class Model(nn.Module):
             self.val_loss = val_loss
             torch.save(self.network.state_dict(), "best.hdf5")
 --> def save_if_best(self, val_loss):
-        if self.val_loss is None:  
+        if self.val_loss is None or self.val_loss < val_loss:  
             self.val_loss = val_loss
             torch.save(self.network.state_dict(), "best.hdf5")
 
 10.  self.weight = (1-0.9)*self.weight + 0.9*(max_grad/mean_grad)
 -->  self.weight = 0.1*self.weight + 0.9*(max_grad/mean_grad)
+
+11. from torch import mean --> we can not import it like that. 
+instead we use:
+def mse_loss(self, data):
+        if len(data[0]) == 0:
+            return torch.tensor([0])
+
+        output = self.forward(data[0])
+        return torch.mean((output - data[1]) ** 2)
 """
+
+print("ok modules")

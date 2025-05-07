@@ -165,3 +165,6 @@ def get_data():
 8. spaces 
 
 """
+
+
+print("data ok")

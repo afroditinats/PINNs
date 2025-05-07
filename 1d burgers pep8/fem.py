@@ -39,7 +39,7 @@ def get_gradient(l2_lambda, indexes, results, y_train, control_variable,
 
     K = (
         float(l2_lambda*viscosity)**2) 
-        + assemble(sum(inner(true - computed, true - computed) * dx for (true, computed) in combined)
+    + assemble(sum(inner(true - computed, true - computed) * dx for (true, computed) in combined)
     )
 
     error = float(K)
@@ -151,3 +151,5 @@ def burgers_1d(viscosity, initial_condition, gradient_mode=False, excluded_indic
     return pred
 
 """
+
+print('ok')

@@ -80,7 +80,11 @@ class Optimizer:
     def run(self):
         """Solves the inverse problem using Sequential Least Squares Programming optimizer."""
 
-        options = {"ftol": 1e-16, "maxiter": 100}
+        options = {
+            "ftol": 1e-16, 
+            "maxiter": 100
+        }
+        
         result = minimize(
             fun=self.error,
             x0=[5],
@@ -123,3 +127,5 @@ class Optimizer:
 
 
 """
+
+print('ok')

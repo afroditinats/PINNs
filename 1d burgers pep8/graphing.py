@@ -11,7 +11,7 @@ def graph_data(result):
 
     # Collects the different types of saved results
     result_levels = ["rmse", "parameter", "parameter_error", "fem_error"]
-    noise_types = [0, 0.5, 1, 2, 3, 5, 7, 10, 25]
+    noise_levels = [0, 0.5, 1, 2, 3, 5, 7, 10, 25]
     pinn_means = {}
     pinn_stdevs = {}
 
@@ -42,26 +42,26 @@ def graph_data(result):
 
     # Prediction accuracy plot
     plt.figure()
-    plt.plot(noise_types, pinn_means["rmse"], label="PINN", color="blue")
-    plt.scatter(noise_types, pinn_means["rmse"], color="blue")
+    plt.plot(noise_levels, pinn_means["rmse"], label="PINN", color="blue")
+    plt.scatter(noise_levels, pinn_means["rmse"], color="blue")
     plt.errorbar(
-                noise_types, pinn_means["rmse"], 
+                noise_levels, pinn_means["rmse"], 
                 yerr=pinn_stdevs["rmse"], fmt='o', 
                 color="black", capsize=5
     )
 
-    plt.plot(noise_types, trad_means["rmse"], label="FEM/SLSQP", color="violet")
-    plt.scatter(noise_types, trad_means["rmse"], color="violet")
+    plt.plot(noise_levels, trad_means["rmse"], label="FEM/SLSQP", color="violet")
+    plt.scatter(noise_levels, trad_means["rmse"], color="violet")
     plt.errorbar(
-                   noise_types, trad_means["rmse"], 
+                   noise_levels, trad_means["rmse"], 
                    yerr=trad_stdevs["rmse"], fmt='o', 
                    color="black", capsize=5
     )
 
-    plt.plot(noise_types, pinn_means["fem_error"], label="PINN/FEM", color="orange")
-    plt.scatter(noise_types, pinn_means["fem_error"], color="orange")
+    plt.plot(noise_levels, pinn_means["fem_error"], label="PINN/FEM", color="orange")
+    plt.scatter(noise_levels, pinn_means["fem_error"], color="orange")
     plt.errorbar(
-                noise_types, pinn_means["fem_error"], 
+                noise_levels, pinn_means["fem_error"], 
                 yerr=pinn_stdevs["fem_error"], fmt='o', 
                 color="black", capsize=5
     )
@@ -75,18 +75,18 @@ def graph_data(result):
 
     # Parameter identification plot
     plt.figure()
-    plt.plot(noise_types, pinn_means["parameter"], label="PINN", color="blue")
-    plt.scatter(noise_types, pinn_means["parameter"], color="blue")
+    plt.plot(noise_levels, pinn_means["parameter"], label="PINN", color="blue")
+    plt.scatter(noise_levels, pinn_means["parameter"], color="blue")
     plt.errorbar(
-                noise_types, pinn_means["parameter"], 
+                noise_levels, pinn_means["parameter"], 
                 yerr=pinn_stdevs["parameter"], fmt='o', 
                 color="black", capsize=5
     )
 
-    plt.plot(noise_types, trad_means["parameter"], label="FEM/SLSQP", color="violet")
-    plt.scatter(noise_types, trad_means["parameter"], color="violet")
+    plt.plot(noise_levels, trad_means["parameter"], label="FEM/SLSQP", color="violet")
+    plt.scatter(noise_levels, trad_means["parameter"], color="violet")
 
-    plt.plot(noise_types, [0.01/np.pi] * 9, label="Ground truth", color="green")
+    plt.plot(noise_levels, [0.01/np.pi] * 9, label="Ground truth", color="green")
     
     plt.xlabel('Sigma')
     plt.ylabel('Parameter') 
@@ -112,7 +112,9 @@ def graph_data(result):
 6. plt.savefig('./plots/paremeter_identification_accuracy.png') (typo)
 --> plt.savefig('./plots/parameter_identification_accuracy.png')
 
-7. noise_levels instead of noise_types (?)
+7. noise_levels instead of noise_types 
 
 8. [result_types[i]] = [] --> [result_levels[i]] = []
 """
+
+print('ok')

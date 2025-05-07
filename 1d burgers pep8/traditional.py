@@ -21,6 +21,7 @@ def single_experiment(l2_lambda, parameter_optimizer):
     parameter_optimizer.viscosity = result["x"][0]
 
     return -parameter_optimizer.validation() 
+    
 
 def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,0,0,0,0,0,0,0]):
     '''Runs the full baseline experiments.'''
@@ -59,7 +60,7 @@ def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,
         for sample in range(samples):
             
             # If L2 lambda is not provided, Bayesian search calculates the best L2 lambda instead
-            if (len(lambdas) == 0):
+            if len(lambdas) == 0:
 
                 bayesian_optimizer = BayesianOptimization(
                     f=lambda x: single_experiment(x, parameter_optimizer),
@@ -93,7 +94,7 @@ def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,
             print("Estimated parameter:" + str(noise_estimated_parameter[-1]))
             print("Test set, RMSE: " + str(noise_rmse[-1]))
             
-            if sample == (samples - 1):
+            if sample == samples - 1:
                 # After the last sample, we have to save everything
                 rmse.append(noise_rmse)
                 estimated_parameter.append(noise_estimated_parameter)
@@ -120,7 +121,7 @@ def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,
     parameter_optimizer.l2_lambda = l2_lambda
     result = parameter_optimizer.run()
     parameter_optimizer.viscosity = result["x"][0]
-    return parameter_optimizer.validation() * -1 --> return - parameter_optimizer.validation() 
+    return parameter_optimizer.validation() * -1 --> return -parameter_optimizer.validation() 
 
 6. for sample in range(0, samples): --> for sample in range(samples):
 
@@ -130,10 +131,7 @@ def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,
    print(noise_parameter_error)  
 --> removed these / already printed
 
-8. noise_estimated_parameter = []
-   noise_rmse = []
-   noise_parameter_error = []
---> double mentioned
-
-9. if (sample == (samples - 1)): (?) can be removed --> if sample == (samples - 1):
+8.  if (sample == (samples - 1)): can be removed --> if sample == samples - 1:
 """
+
+print('ok traditional')

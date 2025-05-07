@@ -11,12 +11,12 @@ def main():
     """
     
     data = get_data()
-    noise = [0, 0.5, 1, 2, 3, 5, 7, 10, 25]
+    noise_levels = [0, 0.5, 1, 2, 3, 5, 7, 10, 25]
     results = []
 
     # Run the PINN and baseline experiments
-    results.append(PINN_experiment(data, noise))
-    results.append(traditional_experiment(data, noise))
+    results.append(PINN_experiment(data, noise_levels))
+    results.append(traditional_experiment(data, noise_levels))
 
     # Graph the results
     graph_data(results)
@@ -29,5 +29,6 @@ if __name__ == "__main__":
 
 1. def created / pep8 suggestion
 
-2. ! maybe we should keep the same variable for the noise in graphing.py (?)
+2. keep the same variable for the noise in graphing.py (noise_levels)
 """
+
