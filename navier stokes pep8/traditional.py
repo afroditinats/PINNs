@@ -51,7 +51,7 @@ def traditional_experiment(data, noise, verbose=True, rerun=False, lambdas=[0,0,
 
         # Bayesian optimization
         pbounds = {'x': (0, 20000)}
-        parameter_optimizer = optimizer([x_test, y_test, x_train, y_train_noise, y_val_noise, x_val])
+        parameter_optimizer = Optimizer([x_test, y_test, x_train, y_train_noise, y_val_noise, x_val])
 
         # Runs each experiment multiple times
         for sample in range(samples):
